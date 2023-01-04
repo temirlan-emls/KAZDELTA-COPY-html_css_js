@@ -1,0 +1,537 @@
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* @import "./scss/mixins/mixins.scss"; */
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Exo 2", sans-serif;
+    /* box-shadow: inset 0px 0px 0px 1px #f00; */
+}
+body {
+    position: relative;
+}
+$accentColor: #6bc67c;
+$accentColorFocus: #75d687;
+$containerWidthInPerc: 65%;
+@mixin flexCenter($flexDircetion, $justifyContent, $alignItems) {
+    display: flex;
+    flex-direction: $flexDircetion;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}
+@mixin backgroundImage($url) {
+    background-image: url($url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+%buttonStyle {
+    font-size: 0.9rem;
+    margin-bottom: 0.5em;
+    padding: 0.9em 1.4em;
+    border-radius: 3em;
+    font-weight: 600;
+    background-color: $accentColor;
+    text-align: center;
+    color: white;
+    transition: background-color 0.2s ease-out 100ms;
+    transition: color 0.2s ease-out 100ms;
+    user-select: none;
+    cursor: pointer;
+}
+%sectionWrapperStyles {
+    width: 100%;
+    background-color: #f1f1fb;
+    @include flexCenter(column, flex-start, center);
+}
+%productListStyles {
+    width: $containerWidthInPerc;
+    display: grid;
+    gap: 1.5em;
+    grid-template-columns: repeat(3, 1fr);
+}
+%productWrapperStyles {
+    height: 35em;
+    background-color: white;
+    cursor: pointer;
+    @include flexCenter(column, flex-end, center);
+}
+%buyButtonStyles {
+    width: 100%;
+    margin-top: 1.5em;
+    background-color: $accentColor;
+    padding: 1em 0;
+    font-size: 1.5rem;
+    color: white;
+    @include flexCenter(row, center, center);
+}
+%productDetailsStyles {
+    width: 80%;
+    margin-top: 1em;
+    @include flexCenter(row, space-between, center);
+}
+
+header {
+    width: 100%;
+    height: 7em;
+    @include flexCenter(row, space-between, center);
+    .headerLeft {
+        width: 50%;
+        height: 100%;
+        @include flexCenter(row, space-around, center);
+
+        .logoImg {
+            height: 50%;
+        }
+        ul {
+            @include flexCenter(row, space-around, center);
+            width: 60%;
+            list-style-type: none;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        ul a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.2s ease-out 100ms;
+        }
+        ul a:hover {
+            color: $accentColor;
+        }
+    }
+    .headerRight {
+        width: 25%;
+        height: 100%;
+        @include flexCenter(row, space-around, center);
+        .tel {
+            @include flexCenter(row, space-around, center);
+            img {
+                margin-right: 0.5em;
+            }
+            div p {
+                font-weight: 700;
+                font-size: 1.3rem;
+            }
+        }
+        .ringButtons {
+            div {
+                @extend %buttonStyle;
+            }
+            div:hover {
+                background-color: $accentColorFocus;
+            }
+            p {
+                font-size: 0.9rem;
+                font-weight: 300;
+                text-align: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.hero {
+    width: 100%;
+    height: 42em;
+    position: relative;
+    @include backgroundImage("./img/1.png");
+    @include flexCenter(row, center, center);
+    .darkenBg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+    .heroContent {
+        width: 85%;
+        color: white;
+        z-index: 1;
+        h2 {
+            font-size: 4rem;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-top: 2.5em;
+        }
+        div {
+            @extend %buttonStyle;
+            margin-top: 1.5em;
+            width: 10%;
+            font-weight: 500;
+        }
+        div:hover {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+.productsList__wrapper {
+    @extend %sectionWrapperStyles;
+    .productList_header__product1 {
+        width: $containerWidthInPerc;
+        height: 8em;
+        @include flexCenter(row, center, center);
+        .productList_header__left {
+            @include flexCenter(column, center, flex-start);
+            row-gap: 0.7em;
+            width: 50%;
+            height: 100%;
+            p {
+                font-size: 1.2rem;
+                color: $accentColor;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+        .productList_header__right {
+            @include flexCenter(column, center, flex-end);
+            row-gap: 0.7em;
+            width: 50%;
+            height: 100%;
+            color: #a1a1a1;
+            p {
+                font-size: 1.2rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    }
+    .productsList {
+        @extend %productListStyles;
+        .productWrapper {
+            @extend %productWrapperStyles;
+            img {
+                width: 65%;
+                margin-bottom: 3em;
+                opacity: 1;
+                transition: opacity 0.2s ease-out 100ms;
+            }
+            img:hover {
+                opacity: 0.6;
+            }
+            h3 {
+                font-size: 1.3rem;
+                font-weight: 400;
+            }
+            .product_details {
+                @extend %productDetailsStyles;
+                .product_details__left {
+                    width: 50%;
+                    p {
+                        font-size: 0.8rem;
+                        color: #a1a1a1;
+                    }
+                }
+                .product_details__right {
+                    p {
+                        font-size: 1.5rem;
+                        font-weight: 900;
+                        color: $accentColor;
+                    }
+                }
+            }
+            .buyButton {
+                @extend %buyButtonStyles;
+            }
+        }
+    }
+    .productList_header__min {
+        width: $containerWidthInPerc;
+        height: 8em;
+        @include flexCenter(column, center, flex-start);
+        h2 {
+            font-size: 2rem;
+        }
+    }
+    .allProductTitles {
+        width: $containerWidthInPerc;
+        height: 8em;
+        margin: 2em 0;
+        @include flexCenter(column, center, flex-start);
+        h2 {
+            font-size: 2rem;
+        }
+    }
+}
+.workflow__wrapper {
+    @extend %sectionWrapperStyles;
+    .workflow {
+        width: $containerWidthInPerc;
+        margin: 2em 0 4em 0;
+        .workflow_header {
+            font-size: 3rem;
+            margin: 0 0 0.5em 0;
+        }
+        .workflow_body {
+            display: grid;
+            gap: 1.5em;
+            grid-template-columns: repeat(3, 1fr);
+            .body_item {
+                .item_header {
+                    margin-bottom: 2em;
+                    span {
+                        color: white;
+                        padding: 0.28em 0.75em;
+                        margin-right: 1em;
+                        border-radius: 100%;
+                        background-color: $accentColor;
+                    }
+                }
+                .item_text {
+                    p {
+                        color: #7d7d7d;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+.reviewAndApplic_wrapper {
+    width: 100%;
+    height: 54em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    .firstImage {
+        @include backgroundImage("./img/Whiteboard-Lead.png");
+    }
+    .secondImage {
+        @include backgroundImage("./img/4.png");
+    }
+    .review_wrapper {
+        @include flexCenter(column, center, flex-end);
+        .review {
+            @include flexCenter(column, center, flex-start);
+            height: 100%;
+            width: 65%;
+            h4 {
+                width: 80%;
+                color: $accentColor;
+                font-size: 1.2rem;
+                margin-bottom: 1em;
+            }
+            h2 {
+                width: 80%;
+                font-size: 2.4rem;
+                margin-bottom: 1em;
+            }
+            p {
+                width: 80%;
+                color: #7d7d7d;
+            }
+        }
+    }
+    .applic_wrapper {
+        @include flexCenter(column, center, flex-start);
+        .applic {
+            @include flexCenter(column, center, flex-end);
+            height: 100%;
+            width: 65%;
+            h2 {
+                width: 85%;
+                font-size: 2.4rem;
+            }
+            .applic__inputs_wrapper {
+                width: 85%;
+                input {
+                    width: 90%;
+                    height: 4em;
+                    padding-left: 2em;
+                    margin: 1em 0;
+                    border: none;
+                    border-radius: 3em;
+                    background-color: #e8e8e8;
+                }
+            }
+
+            .applic__buttons_wrapper {
+                width: 85%;
+                .applic__button {
+                    @extend %buttonStyle;
+                    width: 30%;
+                    font-weight: 700;
+                }
+                .applic__button:hover {
+                    background-color: white;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+.callToAction {
+    @extend %sectionWrapperStyles;
+    height: 18em;
+    background-color: #2a2c3d;
+    color: white;
+    @include flexCenter(column, center, center);
+    h2 {
+        font-size: 3rem;
+        span {
+            color: $accentColor;
+        }
+    }
+    div {
+        @extend %buttonStyle;
+        margin-top: 3.5em;
+        width: 10%;
+        font-weight: 700;
+    }
+}
+.advantages__container {
+    @extend %sectionWrapperStyles;
+    .advantages_wrapper {
+        width: 65%;
+        height: 34em;
+        margin: 5em 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 1.2em;
+        .advantage {
+            @include flexCenter(column, center, center);
+            background-color: white;
+            .advantage_content {
+                width: 80%;
+                height: 85%;
+                img {
+                }
+                h2 {
+                    margin-top: 1em;
+                    font-size: 2rem;
+                    color: #000000;
+                    span {
+                        color: $accentColor;
+                    }
+                    transition: color 0.2s ease-out 100ms;
+                }
+                h2:hover {
+                    color: $accentColor;
+                    cursor: pointer;
+                }
+                p {
+                    margin-top: 2em;
+                    color: #7d7d7d;
+                    br {
+                        content: "";
+                        margin: 2em;
+                        display: block;
+                        font-size: 24%;
+                    }
+                    span {
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+}
+footer {
+    width: 100%;
+    height: 8em;
+    @include flexCenter(row, space-between, center);
+    .footerLeft {
+        width: 50%;
+        height: 100%;
+        @include flexCenter(column, space-around, center);
+        &_top {
+            width: 100%;
+            height: 50%;
+            font-size: 0.8rem;
+            @include flexCenter(row, space-around, center);
+            .logoImg {
+                height: 50%;
+            }
+            ul {
+                @include flexCenter(row, space-around, center);
+                width: 60%;
+                list-style-type: none;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+            ul a {
+                color: black;
+                text-decoration: none;
+                transition: color 0.2s ease-out 100ms;
+            }
+            ul a:hover {
+                color: $accentColor;
+            }
+        }
+        &_bot {
+            width: 100%;
+            height: 50%;
+            font-size: 0.8rem;
+            @include flexCenter(row, flex-start, center);
+            p {
+                margin: 0 4em;
+            }
+        }
+    }
+    .footerRight {
+        width: 25%;
+        height: 100%;
+        @include flexCenter(row, space-around, center);
+        .tel {
+            @include flexCenter(row, space-around, center);
+            img {
+                margin-right: 0.5em;
+            }
+            div p {
+                font-weight: 700;
+                font-size: 1.3rem;
+            }
+        }
+        .ringButtons {
+            div {
+                @extend %buttonStyle;
+            }
+            div:hover {
+                background-color: $accentColorFocus;
+            }
+            p {
+                font-size: 0.9rem;
+                font-weight: 300;
+                text-align: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@keyframes floatingWAButtonAnimation {
+    from {
+        -webkit-box-shadow: 0px 5px 45px 1px rgba(4, 255, 0, 0.5);
+        -moz-box-shadow: 0px 5px 45px 1px rgba(4, 255, 0, 0.5);
+        box-shadow: 0px 5px 45px 1px rgba(4, 255, 0, 0.5);
+    }
+    50% {
+        -webkit-box-shadow: 0px 5px 29px 10px rgba(4, 255, 0, 0.5);
+        -moz-box-shadow: 0px 5px 29px 10px rgba(4, 255, 0, 0.5);
+        box-shadow: 0px 5px 29px 10px rgba(4, 255, 0, 0.5);
+    }
+    to {
+        -webkit-box-shadow: 0px 5px 45px 1px rgba(4, 255, 0, 0.5);
+        -moz-box-shadow: 0px 5px 45px 1px rgba(4, 255, 0, 0.5);
+        box-shadow: 0px 5px 45px 1px rgba(4, 255, 0, 0.5);
+    }
+}
+
+.floatingWAButton {
+    position: fixed;
+    top: 88%;
+    right: 2%;
+    width: 5em;
+    height: 5em;
+    border-radius: 100%;
+    background-color: #2ecc71;
+    animation: floatingWAButtonAnimation 1s ease-in-out infinite;
+    @include backgroundImage("./img/white-phone-icon-png-transparent-25.jpg");
+}

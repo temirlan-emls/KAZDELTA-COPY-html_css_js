@@ -1,0 +1,12 @@
+@mixin flexCenter($flexDircetion, $justifyContent, $alignItems) {
+    display: flex;
+    flex-direction: $flexDircetion;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+}
+@mixin backgroundImage($url) {
+    background-image: url($url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
